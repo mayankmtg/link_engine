@@ -1,0 +1,207 @@
+body {
+  font-family: 'Raleway', sans-serif;
+  /*background-color: #e6e6e6;*/
+  background-color: black;
+  color: #4d4d4d;
+}
+
+
+
+/*navbar mods*/
+.navbar-static-top {
+  font-size: 15px;
+  height: 70px;
+}
+.navbar-default {
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+.navbar-default .navbar-brand {
+  color: #292929;
+  margin-top: 10px;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #01b0d1;
+}
+.navbar-default .navbar-text {
+  color: #292929;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #292929;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #01b0d1;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #01b0d1;
+  background-color: #ffffff;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #01b0d1;
+  background-color: #ffffff;
+}
+.navbar-default .navbar-toggle {
+  border-color: #ffffff;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #ffffff;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #292929;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #292929;
+}
+.navbar-default .navbar-link {
+  color: #292929;
+}
+.navbar-default .navbar-link:hover {
+  color: #01b0d1;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #292929;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #01b0d1;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #01b0d1;
+    background-color: #ffffff;
+  }
+}
+
+
+/*end navbar mods*/
+
+
+/*::-webkit-scrollbar {
+    width: 10px;
+}
+
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(255, 77, 77,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(255, 77, 77,1); 
+}*/
+.button {
+  color: #4d4d4d;
+   background-color: white; 
+    border:2px solid #01b0d1;
+    border-radius: 15px;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #01b0d1; /* Green */
+    color: white;
+    text-decoration: none;
+}
+
+.feature-icon {
+  background-color: #01b0d1;
+  border-radius: 50%;
+  color: white;
+}
+.panel {
+  border-color: #01b0d1;
+  overflow: hidden;
+}
+.panel > .panel-heading {
+    background-image: none;
+    background-color: #01b0d1;
+    color: white;
+
+}
+.panel > .panel-body > .list-group {
+  border: none !important;
+  background-color: transparent;
+}
+.panel > .panel-body > .list-group > .chat{
+  max-width: 60%;
+  min-width: 60%;
+}
+.rainbow {
+  color: #fcfcfc;
+  background-color: #01b0d1;
+  padding: 5px;
+  border-radius: 30%;
+}
+.lrge {
+  font-size: 50px;
+  padding: 10px;
+}
+.logo {
+  color: white;
+  background-color: #1a1a1a;
+  padding: 10px;
+  border-radius: 50%;
+}
+.bold{
+  font-weight: bold;
+}
+.width-fix{
+    max-width: 400px; 
+    padding: 15px;
+    margin: 0 auto;
+
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
