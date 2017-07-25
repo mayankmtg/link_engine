@@ -6,21 +6,21 @@
     </div>
     <div class="panel-body">
       
-      <form class="form-signin" ng-submit="waddleRegister()">
+      <form class="form-signin" ng-submit="linkTankRegister()">
         <h2 class="form-signin-heading">Provide your Details</h2>
         
         <div class="alert alert-danger" role="alert" ng-if="error"><strong>{{error.code}}</strong>{{error.message}} </div>
         <div class="alert alert-success" role="alert" ng-if="message">{{message}}</div>
 
-        <input type="text" class="form-control" placeholder="Name" ng-model="waddleName" required autofocus>
+        <input type="text" class="form-control" placeholder="Name" ng-model="linkTankName" required autofocus>
 
-        <input type="email" class="form-control" placeholder="Email address" ng-model="waddleEmail" required>
+        <input type="email" class="form-control" placeholder="Email address" ng-model="linkTankEmail" required>
         
-        <input type="password" class="form-control" placeholder="Password" ng-model="waddlePassword" required>
+        <input type="password" class="form-control" placeholder="Password" ng-model="linkTankPassword" required>
         
-        <input type="password" class="form-control" placeholder="Confirm Password" ng-model="waddleConfirm" required>
+        <input type="password" class="form-control" placeholder="Confirm Password" ng-model="linkTankConfirm" required>
 
-        <input type="text" class="form-control" placeholder="User Name" ng-model="waddleUname" required>
+        <input type="text" class="form-control" placeholder="User Name" ng-model="linkTankUname" required>
         <div class="alert alert-danger" role="alert" ng-hide="validUname"><strong><span class="glyphicon glyphicon-remove"></span></strong>Username Already in Use</div>
         <div class="alert alert-success" role="alert" ng-show="validUname"><strong><span class="glyphicon glyphicon-ok"></span></strong> User Name is Valid</div>
         
@@ -44,10 +44,10 @@
     </div>
     <div class="col-sm-6 pull-right">
     <div class="pull-left">
-      <h4><strong>Name :</strong> {{waddleName}}</h4>
-      <h4><strong>UserName :</strong> {{waddleUname}}</h4>
-      <h4><strong>Email :</strong> {{waddleEmail}}</h4>
-      <h4><strong>Date of Joining :</strong> {{waddleDateofJoin}}</h4>
+      <h4><strong>Name :</strong> {{linkTankName}}</h4>
+      <h4><strong>UserName :</strong> {{linkTankUname}}</h4>
+      <h4><strong>Email :</strong> {{linkTankEmail}}</h4>
+      <h4><strong>Date of Joining :</strong> {{linkTankDateofJoin}}</h4>
     </div>
     </div>
   </div>

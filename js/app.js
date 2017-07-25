@@ -30,6 +30,19 @@ linkTank.config(['$routeProvider', function($routeProvider){
 				}]
 			}
 		})
+		.when('/adminChat', {
+			templateUrl: 'views/adminChat.html',
+			controller: 'linkTankAdminChat',
+			resolve: {
+				// controller will not be loaded until $requireSignIn resolves
+				// Auth refers to our $firebaseAuth wrapper in the factory below
+				"currentAuth": ["Auth", function(Auth) {
+					// $requireSignIn returns a promise so the resolve waits for it to complete
+					// If the promise is rejected, it will throw a $routeChangeError (see above)
+					return Auth.$requireSignIn();
+				}]
+			}
+		})
 		.when('/chat', {
 			templateUrl: 'views/chat.html',
 			controller: 'linkTankChat',
@@ -105,10 +118,7 @@ linkTank.controller('linkTankAuth', ['$scope','$location', "Auth", function($sco
 }]);
 
 linkTank.controller('linkTankHome', ['$scope', '$location', function($scope, $location){
-	$scope.linkTankStart = function(){
-		console.log("clicked");
-		$location.path('/chat');
-	}
+
 }]);
 
 linkTank.controller('linkTankProfile', ['$scope','Auth','$firebaseArray','$location',function($scope, Auth,$firebaseArray,$location){
@@ -179,6 +189,52 @@ linkTank.controller('linkTankProfile', ['$scope','Auth','$firebaseArray','$locat
 linkTank.controller('linkTankChat', ['$scope','Auth','$firebaseArray','$location', function($scope, Auth,$firebaseArray,$location){
 	var refC=firebase.database().ref().child('Chatroom');
 	var refU=firebase.database().ref().child('Users');
+	$scope.messages=null;
+	$scope.currentChatfUname="admin";
+	$scope.currentChatfUid="IxijkO5xE9h7yQxjnINd5YGY8s82";
+	$scope.uname=null;
+	$scope.messages=$firebaseArray(refC.child(Auth.$getAuth().uid).child($scope.currentChatfUid));
+	refU.child(Auth.$getAuth().uid).child("uname").once("value")
+	.then(function(snapshot){
+		$scope.uname=snapshot.val();
+		$scope.flinkTankFriends.$add({
+			fUid : Auth.$getAuth().uid,
+			fUname: $scope.uname
+		});
+	})
+	.catch(function(error){
+		console.log(error);
+	});
+
+	$scope.flinkTankFriends = $firebaseArray(refU.child($scope.currentChatfUid).child('Friends'));
+
+	$scope.fUname = $scope.currentChatfUname;
+
+
+	$scope.linkTankSend= function(){
+		if($scope.currentChatfUname!=null){
+			$scope.messages=$firebaseArray(refC.child(Auth.$getAuth().uid).child($scope.currentChatfUid));
+			$scope.fmessages=$firebaseArray(refC.child($scope.currentChatfUid).child(Auth.$getAuth().uid));
+			$scope.messages.$add({
+				msg: $scope.message,
+				sent: "right"
+			});
+			$scope.fmessages.$add({
+				msg: $scope.message,
+				sent: "left"
+			});
+			$scope.message="";
+			console.log("sent");
+		}
+		else{
+			console.log("Select a Valid ChatRoom");
+		}
+	}
+}]);
+
+linkTank.controller('linkTankAdminChat', ['$scope','Auth','$firebaseArray','$location', function($scope, Auth,$firebaseArray,$location){
+	var refC=firebase.database().ref().child('Chatroom');
+	var refU=firebase.database().ref().child('Users');
 	var refUn=firebase.database().ref().child('usernames');
 	$scope.messages=null;
 	$scope.currentChatfUname=null;
@@ -192,32 +248,7 @@ linkTank.controller('linkTankChat', ['$scope','Auth','$firebaseArray','$location
 	.catch(function(error){
 		console.log(error);
 	});
-	$scope.addlinkTankFriend = function(){
-		refUn.child($scope.friendUname).once('value').then(function(snapshot){
-			var fUid= snapshot.val();
-			if(fUid == null){
-				console.log("error: No such Username found");
-			}
-			else if(fUid == Auth.$getAuth().uid){
-				console.log("Your UID");
-			}
-			else{
-				console.log("added");
-				$scope.flinkTankFriends = $firebaseArray(refU.child(fUid).child('Friends'));
-				$scope.linkTankFriends.$add({
-					fUid : fUid,
-					fUname: $scope.friendUname
-				});
-				$scope.flinkTankFriends.$add({
-					fUid : Auth.$getAuth().uid,
-					fUname: $scope.uname
-				});
-				
-			}
-		});
-			
 
-	};
 	$scope.linkTankChatroom =function(fUname, fUid){
 		$scope.fUname = fUname;
 		$scope.messages=$firebaseArray(refC.child(Auth.$getAuth().uid).child(fUid));
@@ -236,6 +267,7 @@ linkTank.controller('linkTankChat', ['$scope','Auth','$firebaseArray','$location
 				msg: $scope.message,
 				sent: "left"
 			});
+			$scope.message="";
 			console.log("sent");
 		}
 		else{
