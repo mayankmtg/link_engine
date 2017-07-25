@@ -49,9 +49,13 @@ linkTank.config(['$routeProvider', function($routeProvider){
 			resolve: {
 				// controller will not be loaded until $requireSignIn resolves
 				// Auth refers to our $firebaseAuth wrapper in the factory below
-				"currentAuth": ["Auth", function(Auth) {
+				"currentAuth": ["Auth", "$location", function(Auth, $location) {
 					// $requireSignIn returns a promise so the resolve waits for it to complete
 					// If the promise is rejected, it will throw a $routeChangeError (see above)
+					var authObj=Auth.$getAuth();
+					if(authObj.uid=="hJPwTYfxqcf7HFcRbUfzi0XmF6s2"){
+						$location.path('/adminChat');
+					}
 					return Auth.$requireSignIn();
 				}]
 			}
@@ -170,6 +174,11 @@ linkTank.controller('linkTankProfile', ['$scope','Auth','$firebaseArray','$locat
 					ref.child(Auth.$getAuth().uid).child("name").set($scope.linkTankName);
 					ref.child(Auth.$getAuth().uid).child("uname").set($scope.linkTankUname);
 					ref2.child($scope.linkTankUname).set(Auth.$getAuth().uid);
+					$scope.flinkTankFriends = $firebaseArray(ref.child("hJPwTYfxqcf7HFcRbUfzi0XmF6s2").child('Friends'));
+					$scope.flinkTankFriends.$add({
+						fUid : Auth.$getAuth().uid,
+						fUname: $scope.linkTankUname
+					});
 					$location.path('/auth');
 
 				}).catch(function(error) {
@@ -191,22 +200,18 @@ linkTank.controller('linkTankChat', ['$scope','Auth','$firebaseArray','$location
 	var refU=firebase.database().ref().child('Users');
 	$scope.messages=null;
 	$scope.currentChatfUname="admin";
-	$scope.currentChatfUid="IxijkO5xE9h7yQxjnINd5YGY8s82";
+	$scope.currentChatfUid="hJPwTYfxqcf7HFcRbUfzi0XmF6s2";
 	$scope.uname=null;
 	$scope.messages=$firebaseArray(refC.child(Auth.$getAuth().uid).child($scope.currentChatfUid));
+	
 	refU.child(Auth.$getAuth().uid).child("uname").once("value")
 	.then(function(snapshot){
 		$scope.uname=snapshot.val();
-		$scope.flinkTankFriends.$add({
-			fUid : Auth.$getAuth().uid,
-			fUname: $scope.uname
-		});
 	})
 	.catch(function(error){
 		console.log(error);
 	});
 
-	$scope.flinkTankFriends = $firebaseArray(refU.child($scope.currentChatfUid).child('Friends'));
 
 	$scope.fUname = $scope.currentChatfUname;
 
