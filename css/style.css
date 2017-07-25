@@ -1,7 +1,7 @@
 body {
   font-family: 'Raleway', sans-serif;
   /*background-color: #e6e6e6;*/
-  background-color: black;
+  background-color:#00151a;
   color: #4d4d4d;
 }
 
@@ -11,6 +11,7 @@ body {
 .navbar-static-top {
   font-size: 15px;
   height: 70px;
+  padding-top: 10px;
 }
 .navbar-default {
   background-color: #ffffff;
@@ -18,7 +19,6 @@ body {
 }
 .navbar-default .navbar-brand {
   color: #292929;
-  margin-top: 10px;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {

@@ -2,7 +2,7 @@ body {
 	color:#444;
 	font:normal 16px "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-weight:300;
-	background-color:#fff;
+	background-color:#00151a;
 	overflow-x:hidden;
 	line-height:1.5;
 }
@@ -82,9 +82,9 @@ img {
 .active-section {
 	top:0px;
 }
-.navbar.active-section {
+/*.navbar.active-section {
 	top:0 !important;
-}
+}*/
 .section-title {
 	text-transform:uppercase;
 	font-size:30px;
@@ -238,7 +238,7 @@ img {
 .navbar-inverse .navbar-toggle:focus {
 	outline:none;
 }*/
-.panel {
+/*.panel {
 	box-shadow:none;
 	-webkit-box-shadow:none;
 	-moz-box-shadow:none;
@@ -264,7 +264,7 @@ img {
 }
 .panel-group .panel {
 	border-radius: 0;
-}
+}*/
 /*	Form	==================================================*/
 label {
 	font-weight:300;
@@ -368,11 +368,11 @@ label {
 	-moz-box-shadow: none;
 }
 /*	Header	==================================================*/
-#header {
+/*#header {
 	box-shadow:0 0 5px rgba(0,0,0,.05);
 	-webkit-box-shadow:0 0 5px rgba(0,0,0,.05);
 	-moz-box-shadow: 0 0 5px rgba(0,0,0,.05);
-}
+}*/
 /*	Parallax Background	==================================================*/
 #parallax {
 	height:100%;
@@ -389,7 +389,7 @@ label {
 	z-index: -100;
 }
 /*	Navbar	==================================================*/
-.navbar-inverse .navbar-brand {
+/*.navbar-inverse .navbar-brand {
 	padding:30px 15px;
 	margin-right:30px;
 	color:inherit;
@@ -423,7 +423,7 @@ label {
 }
 .header-button {
 	margin-left: 15px;
-}
+}*/
 /*	Hero	==================================================*/
 #hero {
 	margin-top:140px;
@@ -1165,9 +1165,9 @@ img.mfp-img {
 					margin-left:auto;
 					margin-right:auto;
 	}	
-	.navbar-nav>li>a {
+	/*.navbar-nav>li>a {
 					margin:0 7px;
-	}
+	}*/
 }
 @media (max-width:767px) {
 	.section,.parallax.section .container {
@@ -1186,9 +1186,9 @@ img.mfp-img {
 					padding-left:30px;
 					padding-right:30px;
 	}	
-	.navbar-nav>li>a {
+	/*.navbar-nav>li>a {
 					padding:10px;
-	}
+	}*/
 	.header-button {
 					margin:0;
 	}
