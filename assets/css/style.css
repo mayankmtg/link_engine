@@ -695,30 +695,6 @@ label {
 	display: inline-block;
 	padding: 20px;
 }
-#credits {
-	padding:30px 0;
-	text-transform:uppercase;
-	font-size:13px;
-	line-height: 1.6;
-}
-#credits a {
-	color:inherit;
-}
-#credits .social i {
-	border:1px solid #ccc;
-	height:30px;
-	width:30px;
-	line-height:30px;
-	border-radius:50%;
-	margin-left:2px;
-	color:#999;
-	text-align:center;
-	margin-bottom:15px;
-	display:inline-block;
-}
-#credits .social i:hover {
-	color: #333;
-}
 /*	Magnific Popup	==================================================*/
 .mfp-bg {
 	top:0;

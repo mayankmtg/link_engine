@@ -14,9 +14,13 @@ linkTank.run(["$rootScope", "$location", function($rootScope, $location) {
 linkTank.config(['$routeProvider', function($routeProvider){
 
 	$routeProvider
-		.when('/home', {
-			templateUrl: 'views/home.html',
-			controller: 'linkTankHome',
+		.when('/linkFeed', {
+			templateUrl: 'views/feed.html',
+			controller: 'linkTankFeed',
+		})
+		.when('/comments', {
+			templateUrl: 'views/comments.html',
+			controller: 'linkTankFeed',
 		})
 		.when('/auth', {
 			templateUrl: 'views/auth.html',
@@ -52,10 +56,6 @@ linkTank.config(['$routeProvider', function($routeProvider){
 				"currentAuth": ["Auth", "$location", function(Auth, $location) {
 					// $requireSignIn returns a promise so the resolve waits for it to complete
 					// If the promise is rejected, it will throw a $routeChangeError (see above)
-					var authObj=Auth.$getAuth();
-					if(authObj.uid=="hJPwTYfxqcf7HFcRbUfzi0XmF6s2"){
-						$location.path('/adminChat');
-					}
 					return Auth.$requireSignIn();
 				}]
 			}
@@ -79,7 +79,7 @@ linkTank.config(['$routeProvider', function($routeProvider){
 				}]
 			}
 		}).otherwise({
-			redirectTo: '/home'
+			redirectTo: '/linkFeed'
 		})
 }]);
 
@@ -121,7 +121,46 @@ linkTank.controller('linkTankAuth', ['$scope','$location', "Auth", function($sco
 
 }]);
 
-linkTank.controller('linkTankHome', ['$scope', '$location', function($scope, $location){
+linkTank.controller('linkTankFeed', ['$scope','Auth','$firebaseArray','$location',function($scope, Auth,$firebaseArray,$location){
+	$scope.auth = Auth;
+	$scope.auth.$onAuthStateChanged(function(firebaseUser) {
+      		if (firebaseUser) {
+	      		$scope.firebaseUser = firebaseUser;
+	      		console.log($scope.firebaseUser);
+			firebase.database().ref().child('Users').child(firebaseUser.uid).child('uname').once('value').then(function(snapshot){
+				$scope.linkTankUname=snapshot.val();
+			});
+		}
+
+    	});
+
+	var refF=firebase.database().ref().child('Feed');
+	var list=$firebaseArray(refF);
+	list.$loaded().then(function(){
+		$scope.linkTankFeedCurrent = list;
+	});
+	$scope.linkTankRemoveFeed=function(item){
+		list.$remove(item).then(function(){
+			console.log("removed");
+		});
+	};
+
+	$scope.linkTankFeedPost=function(){
+		if($scope.linkTankNewFeedHeading==null || $scope.linkTankNewFeedContent==null){
+			console.log("error");
+		}
+		else{
+			list.$add({
+				'heading' : $scope.linkTankNewFeedHeading,
+				'content' : $scope.linkTankNewFeedContent,
+				'date': Date.now(),
+				'writer': $scope.auth.$getAuth().uid
+			}).then(function(){
+				$scope.linkTankNewFeedContent="";
+				$scope.linkTankNewFeedHeading="";
+			});
+		}
+	};
 
 }]);
 

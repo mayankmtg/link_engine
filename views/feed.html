@@ -1,0 +1,58 @@
+<link rel="stylesheet" type="text/css" href="../css/feed.css">
+<div class="container">
+	<div class="animated fadeInDown jumbotron">
+		<h1><span class="bold">Link</span>Tank</h1>
+		<p>Your privacy is our concern.<br>If you face any problem, you can chat with us and find yourself at rest again.<br>
+		Discover yourself again and find the solution to any problem ANONYMOUSLY.
+		<br><br>Have a look at what our users have to say...
+		</p>
+	</div>
+</div>
+<br><br><br>
+<div class="container">
+	<div class="col-sm-4 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.3s" ng-repeat="feed in linkTankFeedCurrent">
+		<div class="panel panel-default">
+			<div class="panel-heading pull-right" ng-show="linkTankUname==='admin'"><span class="glyphicon glyphicon-remove" style="cursor: pointer;" ng-click="linkTankRemoveFeed(feed)"></span></div>
+			<div class="panel-body">
+				<h1 class="bold">{{feed.heading}}</h1>
+				<h6 class="pull-left">By {{feed.writer}}</h6>
+				<h6 class="pull-right">On {{ feed.date | date: 'medium'  }}</h6>
+				<br><br><br>
+				<p>
+				{{feed.content}}
+				</p>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+<div class="container animated fadeInDown" ng-show="firebaseUser">
+<div class="row">
+	<div class="col-md-3">&nbsp;</div>
+	<div class="col-md-6">
+		<center><h1>Share your story with us</h1></center>
+		<div class="widget-area no-padding blank">
+			<div class="status-upload">
+				<form ng-submit="linkTankFeedPost()">
+					<input type="text" name="" class="form-control" placeholder="Heading" ng-model="linkTankNewFeedHeading">
+					<textarea placeholder="Content" class="form-control" ng-model="linkTankNewFeedContent"></textarea>
+					<button type="submit" class="btn btn-info green" style="margin-bottom: 10px;"><i class="fa fa-share"></i> Post Now</button>
+				</form>
+			</div><!-- Status Upload  -->
+		</div><!-- Widget Area -->
+	</div>
+	<div class="col-md-3">&nbsp;</div>
+
+</div>
+</div>
+<div class="container" ng-hide="firebaseUser">
+	<center>
+		<h4><i>Post your Own Content</i></h4>
+		<br>
+		<a class="btn btn-info" href="./#!/auth">SignIn</a>
+		<br><br>
+	</center>
+</div>

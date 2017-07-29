@@ -1,4 +1,5 @@
-
+<div class="container">
+<div class="row animated fadeInDown">
 <div class="col-sm-2">&nbsp;</div>
 <div class="col-sm-8">
 	<div class="panel panel-danger">
@@ -9,7 +10,7 @@
 		</div>
             		<div class="panel-body" style="overflow-y: scroll; min-height: 70vh; max-height: 70vh;">
               		<div class="list-group" style="padding: 0;">
-				<div href="#" ng-repeat="m in messages" class="list-group-item chat pull-{{ m.sent }}">{{ m.msg }}</div>
+				<div href="#" ng-repeat="m in messages" class="list-group-item chat pull-{{ m.sent }} animated fadeInUp">{{ m.msg }}</div>
             			</div>
     		</div>
             		<div class="panel-footer" style="min-height: 10vh; max-height: 10vh;background-color: white; border: none;" >
@@ -27,4 +28,4 @@
             
           </div>
 </div>
-<div class="col-sm-2">&nbsp;</div>
+</div>
